@@ -1,0 +1,40 @@
+<div class="container">
+  <app-navbar></app-navbar>
+  <div>
+    <div class="content">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Active Products Report
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let brand of brands">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ brand }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="product-details">
+                <div *ngFor="let product of productsByBrand[brand]" class="product">
+                  <p>Name: {{ product.productName }}</p>
+                  <p>Type: {{ product.productTypeName }}</p>
+                  <p>Price: {{ product.price }}</p>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </ng-container>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <div class="chart-container">
+        <canvas #productCountByBrandChart></canvas>
+      </div>
+
+      <div class="chart-container">
+        <canvas #productCountByTypeChart></canvas>
+      </div>
+    </div>
+  </div>
+</div>

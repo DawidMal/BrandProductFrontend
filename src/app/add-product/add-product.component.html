@@ -1,0 +1,64 @@
+<div class="container">
+  <app-navbar></app-navbar>
+  <div class="content">
+    <div class="add-product-container">
+      <form (ngSubmit)="onSubmit()" class="add-product-form">
+        <h2>Add Product</h2>
+
+        <div class="form-group">
+          <label for="image">Upload File</label>
+          <input type="file" id="image" (change)="onFileSelected($event)" required>
+          <div class="error-message" *ngIf="!product.image && imageTouched">
+            Image is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input matInput [(ngModel)]="product.name" name="name" id="name" placeholder="Enter product name" required>
+          <div class="error-message" *ngIf="!product.name && nameTouched">
+            Name is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input matInput [(ngModel)]="product.price" name="price" id="price" placeholder="Enter product price" required>
+          <div class="error-message" *ngIf="!isValidPrice(product.price) && priceTouched">
+            Valid price is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea matInput [(ngModel)]="product.description" name="description" id="description" placeholder="Enter product description" required></textarea>
+          <div class="error-message" *ngIf="!product.description && descriptionTouched">
+            Description is required.
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="brands && brands.length">
+          <label for="brand">Brand</label>
+          <mat-select [(ngModel)]="product.brandId" name="brand" id="brand" placeholder="Select brand" required>
+            <mat-option *ngFor="let brand of brands" [value]="brand.brandId">{{brand.name}}</mat-option>
+          </mat-select>
+          <div class="error-message" *ngIf="!product.brandId && brandTouched">
+            Brand is required.
+          </div>
+        </div>
+          
+        <div class="form-group" *ngIf="productTypes && productTypes.length">
+          <label for="productType">Product Type</label>
+          <mat-select [(ngModel)]="product.productTypeId" name="productType" id="productType" placeholder="Select product type" required>
+            <mat-option *ngFor="let productType of productTypes" [value]="productType.productTypeId">{{productType.name}}</mat-option>
+          </mat-select>
+          <div class="error-message" *ngIf="!product.productTypeId && productTypeTouched">
+            Product Type is required.
+          </div>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

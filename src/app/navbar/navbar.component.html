@@ -1,0 +1,25 @@
+<div class="container" [ngClass]="{ 'show-navbar': showNavbar }">
+    <div class="sidebar">
+      <ul>
+        <li><a routerLink="/product">Product Listing </a></li>
+        <!-- Add other sidebar items here -->
+      </ul>
+      <ul>
+        <!-- Other menu items -->
+        <li><a routerLink="/add-product">Add Product</a></li>
+      </ul>
+      <ul>
+        <!-- Other navbar links here -->
+        <li><a routerLink="/reporting">Product Reporting</a></li>
+      </ul>
+      <ul>
+        <!-- Other navbar links here -->
+        <li><a routerLink="/login">Logout</a></li>
+      </ul>
+     
+    </div>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
